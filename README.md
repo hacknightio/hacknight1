@@ -15,3 +15,25 @@
 We’re going to work with Twilio tonight, so go get free credit by doing the Twilio Quest Getting Started and earning $20. It’s super quick and easy, and you’ll be able to use the free credit to win cash tonight. 
 
 We’ll also provide $25 AWS credit, so you can open an account there as needed. You might end up needing it, especially for Stage 2, so now would be a good time to register a fresh account (if you don’t want to muddy up your personal one)
+
+
+
+# Stage 1: Twilio Flex
+## Summary
+
+The “secret ingredient” for tonight is Twilio Flex. The first challenge is fairly open ended: build a Twilio Support Center integrating Flex with anything else you deem interesting / exciting / what-have-you. This could include things like: 
+
+
+- Your own system’s custom metrics or logic
+- Ops tools ( VictorOps, OpsGenie, CloudWatch, etc )
+- Monitoring Tools ( Sentry.io, Grafana, etc ) 
+
+# Grading Criteria
+
+It’s always going to be subjective. That being said, tonight’s judges will be looking at how creative, integrated, and extensible solutions will be. Projects will be demo’d from your machine, with breadth of interesting possibilities trumping bullet proof solutions. Bugs and hard coded place holders are fairly novice, assuming it’s not all just smoke and mirrors. 
+
+Good goals to shoot for include:
+
+- Carving out reusable pieces that others can share & learn from 
+- Being able to clone & start your project easily
+- Fairly self-documented code that can be grok’d by someone of decent familiarity
