@@ -37,3 +37,8 @@ Good goals to shoot for include:
 - Carving out reusable pieces that others can share & learn from 
 - Being able to clone & start your project easily
 - Fairly self-documented code that can be grok’d by someone of decent familiarity
+
+
+# Stage 2: CANCELED 
+
+Our timing was off on how long the Twilio trial would take, and given that both teams had some polish to finish out, we're going to let the PRs roll in and decide a winner next time! 
