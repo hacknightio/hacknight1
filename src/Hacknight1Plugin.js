@@ -2,6 +2,7 @@ import { FlexPlugin } from "flex-plugin";
 import React from "react";
 import CustomTaskListComponent from "./CustomTaskListComponent";
 import CustomTaskInfoPanelItem from "./CustomTaskInfoPanelItem";
+import NumberInformationComponent from "./NumberInformationComponent";
 
 const PLUGIN_NAME = "Hacknight1Plugin";
 
@@ -26,6 +27,9 @@ export default class Hacknight1Plugin extends FlexPlugin {
     );
     flex.TaskInfoPanel.Content.add(
       <CustomTaskInfoPanelItem key="steps-for-task" />
+    );
+    flex.CRMContainer.Content.add(
+      <NumberInformationComponent key="number-info" />
     );
     flex.CRMContainer.defaultProps.uriCallback = task => {
       return task
