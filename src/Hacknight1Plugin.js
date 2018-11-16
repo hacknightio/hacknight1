@@ -2,11 +2,14 @@ import { FlexPlugin } from "flex-plugin";
 import React from "react";
 import CustomTaskListComponent from "./CustomTaskListComponent";
 import CustomTaskInfoPanelItem from "./CustomTaskInfoPanelItem";
+import NumberInformationComponent from "./NumberInformationComponent";
 import CustomMap from "./CustomMap";
+import mbxGeocoding from "@mapbox/mapbox-sdk/services/geocoding";
 
+const geocodingClient = mbxGeocoding({ accessToken: accessToken });
 const PLUGIN_NAME = "Hacknight1Plugin";
-const accessToken =
-  "pk.eyJ1IjoiamFudGF5bG9yIiwiYSI6ImNqb2ppdWRjZDA1bTEzd21uNW1kYzJwNGIifQ.KfkXqIdmLVrxByMnpb57kA";
+
+/* <link href="https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css" rel="stylesheet" />; */
 
 export default class Hacknight1Plugin extends FlexPlugin {
   constructor() {
@@ -30,32 +33,31 @@ export default class Hacknight1Plugin extends FlexPlugin {
     flex.TaskInfoPanel.Content.add(
       <CustomTaskInfoPanelItem key="steps-for-task" />
     );
-    flex.CRMContainer.defaultProps.uriCallback = task => {
-      let match = "";
-      const data = task
-        ? `http://apilayer.net/api/validate?access_key=e18ed9c6e2ffc48d1dc262fb1cb6ebe2&number=${
-            task.attributes.name
-          }`
-        : {};
-
-      this.setState({ data });
-
-      // geocodingClient
-      //   .forwardGeocode({
-      //     query: this.state.data.location,
-      //     countries: [this.state.data.country_code],
-      //     limit: 1
-      //   })
-      //   .send()
-      //   .then(response => {
-      //     match = response.body;
-      //   });
-
-      this.setState({ match: [-0.481747846041145, 51.3233379650232] });
-      return;
-    };
-    flex.CRMContainer.defaultProps.add(
-      <CustomMap key="map" coord={this.state.match} />
+    flex.CRMContainer.defaultProps.uriCallback = task =>
+      fetch(
+        `http://apilayer.net/api/validate?access_key=e18ed9c6e2ffc48d1dc262fb1cb6ebe2&number=${
+          task.attributes.name
+        }`
+      ).then(response =>
+        response
+          .JSON(data)
+          .then(data => this.setState({ data }))
+          .then(() =>
+            geocodingClient
+              .forwardGeocode({
+                query: this.state.data.location,
+                countries: [this.state.data.country_code],
+                limit: 1
+              })
+              .send()
+              .then(response => response.body)
+          )
+          .catch(e => console.log(e))
+      );
+    flex.CRMContainer.Content.replace(<CustomMap key="map" zoom={13} />);
+    flex.CRMContainer.Content.add(
+      <NumberInformationComponent key="number-info" />,
+      { sortOrder: 2 }
     );
   }
 }
