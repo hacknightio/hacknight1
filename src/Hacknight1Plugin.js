@@ -2,12 +2,11 @@ import { FlexPlugin } from "flex-plugin";
 import React from "react";
 import CustomTaskListComponent from "./CustomTaskListComponent";
 import CustomTaskInfoPanelItem from "./CustomTaskInfoPanelItem";
-import mbxGeocoding from "@mapbox/mapbox-sdk/services/geocoding";
+import CustomMap from "./CustomMap";
 
 const PLUGIN_NAME = "Hacknight1Plugin";
 const accessToken =
   "pk.eyJ1IjoiamFudGF5bG9yIiwiYSI6ImNqb2ppdWRjZDA1bTEzd21uNW1kYzJwNGIifQ.KfkXqIdmLVrxByMnpb57kA";
-const geocodingClient = mbxGeocoding({ accessToken: accessToken });
 
 export default class Hacknight1Plugin extends FlexPlugin {
   constructor() {
@@ -39,18 +38,24 @@ export default class Hacknight1Plugin extends FlexPlugin {
           }`
         : {};
 
-      geocodingClient
-        .forwardGeocode({
-          query: data.location,
-          countries: [country_code],
-          limit: 1
-        })
-        .send()
-        .then(response => {
-          match = response.body;
-        });
+      this.setState({ data });
 
-      return `https://api.mapbox.com/v4/mapbox.mapbox-streets-v7/1/0/0.png?access_token=${accessToken}`;
+      // geocodingClient
+      //   .forwardGeocode({
+      //     query: this.state.data.location,
+      //     countries: [this.state.data.country_code],
+      //     limit: 1
+      //   })
+      //   .send()
+      //   .then(response => {
+      //     match = response.body;
+      //   });
+
+      this.setState({ match: [-0.481747846041145, 51.3233379650232] });
+      return;
     };
+    flex.CRMContainer.defaultProps.add(
+      <CustomMap key="map" coord={this.state.match} />
+    );
   }
 }
