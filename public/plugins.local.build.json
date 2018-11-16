@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Hacknight1Plugin",
+    "version": "0.0.0",
+    "class": "Hacknight1Plugin",
+    "requires": [
+      {
+        "@twilio/flex-ui": "1.1.0"
+      }
+    ],
+    "src": "http://127.0.0.1:8085"
+  }
+]
