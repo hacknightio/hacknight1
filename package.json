@@ -1,0 +1,28 @@
+{
+  "name": "hacknight1",
+  "version": "1.0.0",
+  "description": "## Format",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snaveevans/hacknight1.git"
+  },
+  "author": "tyler evans <tyler@tylerevans.co> (www.tylerevans.co)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/snaveevans/hacknight1/issues"
+  },
+  "homepage": "https://github.com/snaveevans/hacknight1#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.4",
+    "multer": "^1.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.6"
+  }
+}
