@@ -3,6 +3,7 @@ import React from "react";
 import CustomTaskListComponent from "./CustomTaskListComponent";
 import CustomTaskInfoPanelItem from "./CustomTaskInfoPanelItem";
 import NumberInformationComponent from "./NumberInformationComponent";
+import LocationInformationComponent from "./LocationInformationComponent";
 import CustomMapCMSReplace, { accessToken } from "./CustomMapCMSReplace";
 
 const PLUGIN_NAME = "Hacknight1Plugin";
@@ -104,12 +105,21 @@ export default class Hacknight1Plugin extends FlexPlugin {
     //         .catch(e => console.log(e))
     //     )
     //     .catch(e => console.log(e));
-    flex.CRMContainer.Content.replace(
-      <CustomMapCMSReplace center={this.state.center} key="map" />
+    // flex.CRMContainer.Content.replace(
+    //   <CustomMapCMSReplace center={this.state.center} key="map" />,
+    //   { sortOrder: 1 }
+    // );
+    flex.CRMContainer.Content.add(
+      task && (
+        <LocationInformationComponent
+          key="location-info"
+          center={this.state.center}
+          zoom={this.state.zoom}
+        />
+      )
     );
     flex.CRMContainer.Content.add(
-      <NumberInformationComponent key="number-info" />,
-      { sortOrder: 2 }
+      task && <NumberInformationComponent key="number-info" />
     );
   }
 }
