@@ -25,7 +25,12 @@ export default class Hacknight1Plugin extends FlexPlugin {
       }
     );
     flex.TaskInfoPanel.Content.add(
-      <CustomTaskInfoPanelItem key="to-do-list" />
+      <CustomTaskInfoPanelItem key="steps-for-task" />
     );
+    flex.CRMContainer.defaultProps.uriCallback = task => {
+      return task
+        ? "https://www.bing.com/search?q=" + task.attributes.name
+        : "https://bing.com/";
+    };
   }
 }

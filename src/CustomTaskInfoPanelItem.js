@@ -6,14 +6,14 @@ class CustomTaskInfoPanelItem extends React.Component<any, MyState> {
       <div>
         <br />
         <hr />
-        <h3>TO DO</h3>
-        <ul>
+        <h1>STEPS FOR TASK SUCCESS</h1>
+        <ol>
           <li>Answer the task</li>
-          <li>Locate the customer's record in the CRM</li>
-          <li>Find relevant account details</li>
-          <li>Resolve the customer's support issue</li>
-          <li>Complete the task</li>
-        </ul>
+          <li>Locate the customer's order in ERP</li>
+          <li>Find relevant account details and address</li>
+          <li>Resolve the customer's issue or udpate shipping status</li>
+          <li>Complete the task and request feedback</li>
+        </ol>
       </div>
     );
   }
