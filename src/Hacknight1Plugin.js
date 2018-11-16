@@ -1,8 +1,9 @@
-import { FlexPlugin } from 'flex-plugin';
-import React from 'react';
-import CustomTaskListComponent from './CustomTaskListComponent';
+import { FlexPlugin } from "flex-plugin";
+import React from "react";
+import CustomTaskListComponent from "./CustomTaskListComponent";
+import CustomTaskInfoPanelItem from "./CustomTaskInfoPanelItem";
 
-const PLUGIN_NAME = 'Hacknight1Plugin';
+const PLUGIN_NAME = "Hacknight1Plugin";
 
 export default class Hacknight1Plugin extends FlexPlugin {
   constructor() {
@@ -20,8 +21,11 @@ export default class Hacknight1Plugin extends FlexPlugin {
     flex.AgentDesktopView.Panel1.Content.add(
       <CustomTaskListComponent key="demo-component" />,
       {
-        sortOrder: -1,
+        sortOrder: -1
       }
+    );
+    flex.TaskInfoPanel.Content.add(
+      <CustomTaskInfoPanelItem key="to-do-list" />
     );
   }
 }
