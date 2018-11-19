@@ -1,6 +1,4 @@
-import styled from "styled-components";
-
-const mapboxStyle = styled.div`{
+export default () => `{
 .mapboxgl-map {
   font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
   overflow: hidden;
@@ -539,5 +537,3 @@ a.mapboxgl-ctrl-logo.mapboxgl-compact {
   }
 }
 `;
-
-export default mapboxStyle;
