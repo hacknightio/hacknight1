@@ -1,43 +1,75 @@
 import React from "react";
-import mapboxgl from "mapbox-gl";
-import MapboxStyle from "mapbox-gl";
+import ReactMapboxGl, {
+  Layer,
+  Feature,
+  Popup,
+  Marker,
+  ZoomControl,
+  ScaleControl,
+  RotationControl
+} from "react-mapbox-gl";
+import MapboxStyle from "./mapboxstyle";
 
-export const accessToken =
-  "pk.eyJ1IjoiZmFicmljOCIsImEiOiJjaWc5aTV1ZzUwMDJwdzJrb2w0dXRmc2d0In0.p6GGlfyV-WksaDV_KdN27A";
+let Map;
 
-mapboxgl.accessToken = accessToken;
+class CustomMap extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { map: false };
+  }
 
-const mapStyle = {
-  padding: "10px",
-  margin: "0px",
-  height: "50vh",
-  width: "50vw"
-};
-
-class Map extends React.Component {
   componentDidMount() {
-    const { latitude, longitude, zoom } = this.props;
-    const map = new mapboxgl.Map({
-      container: "map-container",
-      style: "mapbox://styles/mapbox/streets-v10",
-      center: [longitude, latitude],
-      zoom: zoom
+    const Map = ReactMapboxGl({
+      accessToken:
+        "pk.eyJ1IjoiamFudGF5bG9yIiwiYSI6ImNqb29vemoxNjFqNG8zdm5vbzRzdWhzNTQifQ.IJqunAxaC6YTc2MJOW4How",
+      injectCSS: false
     });
+    this.setState({ map: this.renderMap(Map) });
   }
 
-  componentWillUnmount() {
-    // map.remove();
-  }
+  renderMap = Map => {
+    const {
+      longitude: long,
+      latitude: lat,
+      zoom = 12,
+      place_name: name
+    } = this.props;
+    return (
+      <Map
+        style="mapbox://styles/mapbox/streets-v10"
+        containerStyle={{
+          padding: "5px",
+          height: "45vh",
+          width: "40vw"
+        }}
+        zoom={[zoom]}
+        center={[long, lat]}
+      >
+        <Layer type="symbol" id="marker" layout={{ "icon-image": "marker-15" }}>
+          <Feature coordinates={[long, lat]} />
+        </Layer>
+        <Marker coordinates={[long, lat]} anchor="bottom" />
+        <Popup
+          coordinates={[long, lat]}
+          offset={{
+            "bottom-left": [12, -38],
+            bottom: [0, -38],
+            "bottom-right": [-12, -38]
+          }}
+        >
+          <h1>{name}</h1>
+        </Popup>
+        <RotationControl />
+        <ZoomControl />
+        <ScaleControl position="bottom-left" />
+      </Map>
+    );
+  };
 
   render() {
-    return (
-      <MapboxStyle>
-        <div style={mapStyle}>
-          <div id="map-container" />
-        </div>
-      </MapboxStyle>
-    );
+    if (!this.state.map) return null;
+    return <div style={{ ...MapboxStyle }}>{this.state.map}</div>;
   }
 }
 
-export default Map;
+export default CustomMap;

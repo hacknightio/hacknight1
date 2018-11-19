@@ -71,7 +71,7 @@ export default class CustomCrmContent extends Component {
           <LocationInformationComponent
             key="location-info"
             {...this.props}
-            center={this.state.location.center}
+            {...this.state.location}
           />
         )}
       </div>
