@@ -7,19 +7,23 @@ const taskListStyles = {
   background: "#000"
 };
 
-const regex = /^\+(\d{1})(\d{3})(\d{3})(\d{4})$/gm;
+const regex = /^(\d{1})(\d{3})(\d{3})(\d{4})$/gm;
 const subst = `$1($2) $3-$4`;
 
-const NumberInformationComponent = props => {
-  const phone =
-    props &&
-    props.task &&
-    props.task.attributes &&
-    props.task.attributes.name &&
-    props.task.attributes.name.replace(regex, subst);
+const NumberInformationComponent = ({ number, valid, carrier, line_type }) => {
+  if (!number)
+    return (
+      <div style={taskListStyles}>
+        Please Select a Task To See More Information
+      </div>
+    );
   return (
     <div style={taskListStyles}>
-      Phone Number: {phone ? phone : " - Please Select a Task First. -"}
+      Phone Number:{" " + number.replace(regex, subst) + ". "}Phone number
+      {valid ? "is" : "is not"} valid on the {carrier} network, and
+      {line_type === "mobile"
+        ? " accepts texts because it's a mobile phone"
+        : " does not accept texts."}
     </div>
   );
 };

@@ -9,8 +9,6 @@ import CustomCrmContent from "./CustomCrmContent";
 
 const PLUGIN_NAME = "Hacknight1Plugin";
 
-const numVeryifyUrl =
-  "http://apilayer.net/api/validate?access_key=e18ed9c6e2ffc48d1dc262fb1cb6ebe2&number=";
 const mapBoxGeoUrl = () =>
   `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURI(
     this.state.data.location
