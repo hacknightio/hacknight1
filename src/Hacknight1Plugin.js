@@ -2,9 +2,9 @@ import { FlexPlugin } from "flex-plugin";
 import React from "react";
 import CustomTaskListComponent from "./CustomTaskListComponent";
 import CustomTaskInfoPanelItem from "./CustomTaskInfoPanelItem";
-import NumberInformationComponent from "./NumberInformationComponent";
-import LocationInformationComponent from "./LocationInformationComponent";
 import CustomMapCMSReplace, { accessToken } from "./CustomMapCMSReplace";
+// import CustomCrmContent from "./CustomCrmContent";
+import NumberInformationComponent from "./NumberInformationComponent";
 
 const PLUGIN_NAME = "Hacknight1Plugin";
 
@@ -80,6 +80,12 @@ export default class Hacknight1Plugin extends FlexPlugin {
    * @param manager { import('@twilio/flex-ui').Manager }
    */
   init(flex, manager) {
+    flex.AgentDesktopView.Panel1.Content.add(
+      <CustomTaskListComponent key="demo-component" />,
+      {
+        sortOrder: -1
+      }
+    );
     flex.TaskInfoPanel.Content.add(
       <CustomTaskInfoPanelItem key="steps-for-task" />
     );
@@ -99,15 +105,6 @@ export default class Hacknight1Plugin extends FlexPlugin {
     //         .catch(e => console.log(e))
     //     )
     //     .catch(e => console.log(e));
-    flex.CRMContainer.Content.replace(
-      <NumberInformationComponent key="number-info" />
-    );
-    flex.CRMContainer.Content.add(
-      <LocationInformationComponent
-        key="location-info"
-        center={this.state.center}
-        zoom={this.state.zoom}
-      />
-    );
+    flex.CRMContainer.Content.replace(<NumberInformationComponent />);
   }
 }
