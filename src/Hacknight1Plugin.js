@@ -110,16 +110,14 @@ export default class Hacknight1Plugin extends FlexPlugin {
     //   { sortOrder: 1 }
     // );
     flex.CRMContainer.Content.add(
-      task && (
-        <LocationInformationComponent
-          key="location-info"
-          center={this.state.center}
-          zoom={this.state.zoom}
-        />
-      )
+      <LocationInformationComponent
+        key="location-info"
+        center={this.state.center}
+        zoom={this.state.zoom}
+      />
     );
     flex.CRMContainer.Content.add(
-      task && <NumberInformationComponent key="number-info" />
+      <NumberInformationComponent key="number-info" />
     );
   }
 }
