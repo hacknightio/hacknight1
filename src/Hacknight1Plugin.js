@@ -2,7 +2,6 @@ import { FlexPlugin } from "flex-plugin";
 import React from "react";
 import CustomTaskListComponent from "./CustomTaskListComponent";
 import CustomTaskInfoPanelItem from "./CustomTaskInfoPanelItem";
-import CustomMapCMSReplace, { accessToken } from "./CustomMapCMSReplace";
 import CustomCrmContent from "./CustomCrmContent";
 
 const PLUGIN_NAME = "Hacknight1Plugin";

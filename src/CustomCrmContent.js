@@ -43,7 +43,13 @@ export default class CustomCrmContent extends Component {
             this.mapBoxGeoUrl(this.state.numVerify)
           );
           const mapBoxLocation = await mapBoxGeoRequest.json();
-          this.setState({ location: mapBoxLocation.features[0] });
+          if (
+            mapBoxLocation &&
+            mapBoxLocation.features &&
+            mapBoxLocation.features.length > 0
+          ) {
+            this.setState({ location: mapBoxLocation.features[0] });
+          }
         } catch (e) {
           console.log(e);
         }
@@ -55,15 +61,19 @@ export default class CustomCrmContent extends Component {
     if (!this.state.numVerify.number) return null;
     return (
       <div>
-        <NumberInformationComponent
-          {...this.state.numVerify}
-          key="number-info"
-        />
-        <LocationInformationComponent
-          key="location-info"
-          {...this.props}
-          center={this.state.location.center}
-        />
+        {this.state.numVerify.number && (
+          <NumberInformationComponent
+            {...this.state.numVerify}
+            key="number-info"
+          />
+        )}
+        {this.state.location.center && (
+          <LocationInformationComponent
+            key="location-info"
+            {...this.props}
+            center={this.state.location.center}
+          />
+        )}
       </div>
     );
   }

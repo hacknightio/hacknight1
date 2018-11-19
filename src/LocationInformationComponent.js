@@ -1,4 +1,5 @@
 import React from "react";
+import CustomMapCMSReplace from "./CustomMapCMSReplace";
 
 const mapDetailsStyle = {
   padding: "10px",
@@ -7,11 +8,16 @@ const mapDetailsStyle = {
   background: "#000"
 };
 
-export default ({
-  center = [-0.481747846041145, 51.3233379650232],
-  zoom = 9
-}) => (
-  <div style={mapDetailsStyle}>{`Longitude: ${center[0]} Latitude: ${
-    center[1]
-  } Zoom: ${zoom}`}</div>
+export default ({ center, zoom }) => (
+  <div>
+    <div style={mapDetailsStyle}>
+      {`Longitude: ${center && center[0]} Latitude: ${center &&
+        center[1]} Zoom: ${zoom}`}
+    </div>
+    <CustomMapCMSReplace
+      longitude={center && center[0]}
+      latitude={center && center[1]}
+      zoom={zoom}
+    />
+  </div>
 );
