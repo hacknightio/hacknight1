@@ -3,8 +3,9 @@ import React from "react";
 import CustomTaskListComponent from "./CustomTaskListComponent";
 import CustomTaskInfoPanelItem from "./CustomTaskInfoPanelItem";
 import CustomMapCMSReplace, { accessToken } from "./CustomMapCMSReplace";
-// import CustomCrmContent from "./CustomCrmContent";
-import NumberInformationComponent from "./NumberInformationComponent";
+import CustomCrmContent from "./CustomCrmContent";
+// import NumberInformationComponent from "./NumberInformationComponent";
+// import LocationInformationComponent from "./LocationInformationComponent";
 
 const PLUGIN_NAME = "Hacknight1Plugin";
 
@@ -105,6 +106,8 @@ export default class Hacknight1Plugin extends FlexPlugin {
     //         .catch(e => console.log(e))
     //     )
     //     .catch(e => console.log(e));
-    flex.CRMContainer.Content.replace(<NumberInformationComponent />);
+    flex.CRMContainer.Content.replace(
+      <CustomCrmContent {...this.state} key="custom-crm" />
+    );
   }
 }
